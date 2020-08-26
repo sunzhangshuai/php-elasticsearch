@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\ElasticSearchProvider;
+
 return [
 
     /*
@@ -174,6 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        ElasticSearchProvider::class
 
     ],
 

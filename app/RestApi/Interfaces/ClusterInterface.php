@@ -11,6 +11,8 @@
 
 namespace App\RestApi\Interfaces;
 
+use GuzzleHttp\Exception\GuzzleException;
+
 /**
  * 集群接口
  *
@@ -23,7 +25,8 @@ interface ClusterInterface
     /**
      * 获取所有节点，不含表头
      *
-     * @return array
+     * @return string
+     * @throws GuzzleException
      */
     public function nodes();
 
@@ -31,6 +34,7 @@ interface ClusterInterface
      * 获取所有节点，含表头
      *
      * @return array
+     * @throws GuzzleException
      */
     public function nodesTable();
 
@@ -40,6 +44,7 @@ interface ClusterInterface
      * @param array $node_names
      *
      * @return array
+     * @throws GuzzleException
      */
     public function searchNode($node_names);
 
@@ -49,6 +54,7 @@ interface ClusterInterface
      * @param $columns
      *
      * @return array
+     * @throws GuzzleException
      */
     public function searchColumn($columns);
 
@@ -56,6 +62,7 @@ interface ClusterInterface
      * 集群健康检测
      *
      * @return array
+     * @throws GuzzleException
      */
     public function health();
 
@@ -63,6 +70,7 @@ interface ClusterInterface
      * 分片级别健康检测
      *
      * @return array
+     * @throws GuzzleException
      */
     public function shardsHealth();
 
@@ -72,6 +80,7 @@ interface ClusterInterface
      * @param array $indices
      *
      * @return array
+     * @throws GuzzleException
      */
     public function indicesHealth($indices);
 
@@ -81,6 +90,7 @@ interface ClusterInterface
      * @param array $indices
      *
      * @return array
+     * @throws GuzzleException
      */
     public function indicesShardsHealth($indices);
 
@@ -88,6 +98,7 @@ interface ClusterInterface
      * 集群的详细信息
      *
      * @return array
+     * @throws GuzzleException
      */
     public function cluster();
 
@@ -95,6 +106,7 @@ interface ClusterInterface
      * 获取集群的设置
      *
      * @return array
+     * @throws GuzzleException
      */
     public function clusterSettings();
 
@@ -102,6 +114,7 @@ interface ClusterInterface
      * 获取集群的设置，包含默认设置
      *
      * @return array
+     * @throws GuzzleException
      */
     public function clusterSettingsDefault();
 
@@ -112,6 +125,7 @@ interface ClusterInterface
      * @param array $columns
      *
      * @return mixed
+     * @throws GuzzleException
      */
     public function shards($title, $columns);
 }

@@ -11,6 +11,8 @@
 
 namespace App\RestApi\Interfaces;
 
+use GuzzleHttp\Exception\GuzzleException;
+
 /**
  * 文档的操作接口
  *
@@ -27,6 +29,7 @@ interface DocumentInterface
      * @param array  $document
      *
      * @return array
+     * @throws GuzzleException
      */
     public function create($index, $document);
 
@@ -38,6 +41,7 @@ interface DocumentInterface
      * @param array  $document
      *
      * @return array
+     * @throws GuzzleException
      */
     public function createById($index, $id, $document);
 
@@ -49,6 +53,7 @@ interface DocumentInterface
      * @param array  $document
      *
      * @return array
+     * @throws GuzzleException
      */
     public function createById2($index, $id, $document);
 
@@ -59,6 +64,7 @@ interface DocumentInterface
      * @param int    $id
      *
      * @return array
+     * @throws GuzzleException
      */
     public function find($index, $id);
 
@@ -70,6 +76,7 @@ interface DocumentInterface
      * @param array  $document
      *
      * @return array
+     * @throws GuzzleException
      */
     public function index($index, $id, $document);
 
@@ -81,6 +88,7 @@ interface DocumentInterface
      * @param array  $document
      *
      * @return array
+     * @throws GuzzleException
      */
     public function update($index, $id, $document);
 
@@ -91,6 +99,7 @@ interface DocumentInterface
      * @param int    $id
      *
      * @return array
+     * @throws GuzzleException
      */
     public function delete($index, $id);
 
@@ -98,6 +107,7 @@ interface DocumentInterface
      * 多条指令批量操作
      *
      * @return array
+     * @throws GuzzleException
      */
     public function bulk();
 
@@ -107,6 +117,7 @@ interface DocumentInterface
      * @param array $param
      *
      * @return array
+     * @throws GuzzleException
      */
     public function mget($param);
 
@@ -117,6 +128,7 @@ interface DocumentInterface
      * @param array  $param
      *
      * @return array
+     * @throws GuzzleException
      */
     public function mgetByIndex($index, $param);
 
@@ -124,9 +136,10 @@ interface DocumentInterface
      * 指定索引批量查询
      *
      * @param string $index
-     * @param array $param
+     * @param array  $param
      *
      * @return mixed
+     * @throws GuzzleException
      */
     public function msearch($index, $param);
 }

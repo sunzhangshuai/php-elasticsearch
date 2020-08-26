@@ -144,4 +144,8 @@ return [
 
     ],
 
+    'elasticsearch' => [
+        'host' => env('ES_HOSTS', 'http://localhost:9200')
+    ],
+
 ];
