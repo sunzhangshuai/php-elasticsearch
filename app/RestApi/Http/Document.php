@@ -23,7 +23,7 @@ class Document extends HttpElasticsearch implements DocumentInterface
      */
     public function create($index, $document)
     {
-        $uri = $this->host . '/' . $index . '/_doc';
+        $uri   = $this->host . '/' . $index . '/_doc';
         $param = [
             'json' => $document
         ];
@@ -35,12 +35,12 @@ class Document extends HttpElasticsearch implements DocumentInterface
      */
     public function createById($index, $id, $document)
     {
-        $uri = $this->host . '/' . $index . '/_doc/' . $id;
+        $uri   = $this->host . '/' . $index . '/_doc/' . $id;
         $param = [
             'query' => [
                 'op_type' => 'create'
             ],
-            'json' => $document
+            'json'  => $document
         ];
         return \GuzzleHttp\json_decode($this->client->put($uri, $param)->getBody()->getContents(), true);
     }
@@ -50,7 +50,7 @@ class Document extends HttpElasticsearch implements DocumentInterface
      */
     public function createById2($index, $id, $document)
     {
-        $uri = $this->host . '/' . $index . '/_create/' . $id;
+        $uri   = $this->host . '/' . $index . '/_create/' . $id;
         $param = [
             'json' => $document
         ];
@@ -71,7 +71,7 @@ class Document extends HttpElasticsearch implements DocumentInterface
      */
     public function index($index, $id, $document)
     {
-        $uri = $this->host . '/' . $index . '/_doc/' . $id;
+        $uri   = $this->host . '/' . $index . '/_doc/' . $id;
         $param = [
             'json' => $document
         ];
@@ -83,7 +83,7 @@ class Document extends HttpElasticsearch implements DocumentInterface
      */
     public function update($index, $id, $document)
     {
-        $uri = $this->host . '/' . $index . '/_update/' . $id;
+        $uri   = $this->host . '/' . $index . '/_update/' . $id;
         $param = [
             'json' => [
                 'doc' => $document
