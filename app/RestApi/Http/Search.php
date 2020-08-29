@@ -23,5 +23,4 @@ use App\RestApi\Interfaces\SearchInterface;
  */
 class Search extends HttpElasticsearch implements SearchInterface
 {
-
 }
