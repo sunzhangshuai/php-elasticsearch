@@ -32,9 +32,8 @@ class ClusterTest extends TestCase
         $cluster->searchColumn($columns);
         $cluster->health();
         $cluster->shardsHealth();
-        $indices = ['movies'];
+        $indices = ['movies', 'laopo'];
         $cluster->indicesHealth($indices);
-        $cluster->indicesShardsHealth($indices);
         $cluster->cluster();
         $cluster->clusterSettings();
         $cluster->clusterSettingsDefault();
