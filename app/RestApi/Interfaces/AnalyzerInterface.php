@@ -45,12 +45,12 @@ interface AnalyzerInterface
      * 自定义索引字段进行测试
      *
      * @param string $tokenizer 分词规则
-     * @param string $filter    分开的词语加工规则1
+     * @param array  $filter    分开的词语加工规则1
      * @param string $text
      *
      * @return array
      */
-    public function testByCustom($tokenizer, $filter, $text);
+    public function testByCustom(string $tokenizer, array $filter, string $text);
 
     /**
      * 标准分词器
@@ -145,4 +145,11 @@ interface AnalyzerInterface
      * @return string
      */
     public function thulacAnalyzer($text);
+
+    /**
+     * 在索引中定义新的分词器
+     *
+     * @return string
+     */
+    public function mappingDefinitionAnalyzer();
 }
