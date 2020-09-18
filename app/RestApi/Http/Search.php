@@ -23,4 +23,39 @@ use App\RestApi\Interfaces\SearchInterface;
  */
 class Search extends HttpElasticsearch implements SearchInterface
 {
+    /**
+     * @inheritDoc
+     */
+    public function search()
+    {
+        $uri = $this->host . '/_search';
+        return json_decode($this->client->get($uri)->getBody()->getContents(), true);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function indexSearch($index)
+    {
+        $uri = $this->host . '/' . $index . '/_search';
+        return json_decode($this->client->get($uri)->getBody()->getContents(), true);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function indicesSearch($indices)
+    {
+        $uri = $this->host . '/' . implode(',', $indices) . '/_search';
+        return json_decode($this->client->get($uri)->getBody()->getContents(), true);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function indexPatternSearch($indices)
+    {
+        $uri = $this->host . '/' . $indices . '/_search';
+        return json_decode($this->client->get($uri)->getBody()->getContents(), true);
+    }
 }

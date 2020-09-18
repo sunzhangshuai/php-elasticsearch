@@ -39,15 +39,6 @@ interface UriSearchInterface
     public function genericsSearch($value);
 
     /**
-     * 第二种范查询
-     *
-     * @param $query
-     *
-     * @return array
-     */
-    public function mindGenericsSearch($value);
-
-    /**
      * 指定字段查询
      *
      * @param $field
@@ -141,9 +132,9 @@ interface UriSearchInterface
     /**
      * 近似度查询
      *
-     * @param $string
+     * @param $array
      *
      * @return array
      */
-    public function approximationQuery($string);
+    public function approximationQuery($array);
 }

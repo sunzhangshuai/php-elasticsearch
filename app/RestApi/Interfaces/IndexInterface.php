@@ -43,7 +43,7 @@ interface IndexInterface
      * @return string
      * @throws GuzzleException
      */
-    public function indices($title, $columns, $index_matching);
+    public function indices(bool $title, array $columns, string $index_matching);
 
     /**
      * 查看状态为绿的索引

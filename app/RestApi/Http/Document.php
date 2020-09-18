@@ -17,7 +17,6 @@ use App\RestApi\Interfaces\DocumentInterface;
 
 class Document extends HttpElasticsearch implements DocumentInterface
 {
-
     /**
      * @inheritDoc
      */

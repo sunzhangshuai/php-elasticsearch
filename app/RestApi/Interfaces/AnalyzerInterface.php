@@ -44,13 +44,14 @@ interface AnalyzerInterface
     /**
      * 自定义索引字段进行测试
      *
+     * @param array  $char_filter
      * @param string $tokenizer 分词规则
-     * @param array  $filter    分开的词语加工规则1
+     * @param array  $filter    分开的词语加工规则
      * @param string $text
      *
      * @return array
      */
-    public function testByCustom(string $tokenizer, array $filter, string $text);
+    public function testByCustom(array $char_filter, string $tokenizer, array $filter, string $text);
 
     /**
      * 标准分词器
@@ -136,15 +137,6 @@ interface AnalyzerInterface
      * @return string
      */
     public function IKAnalyzer($text);
-
-    /**
-     * 清华大学自然语言处理和社会人文自然实验室出品的中文分词器，暂时没有7版本的插件
-     *
-     * @param $text
-     *
-     * @return string
-     */
-    public function thulacAnalyzer($text);
 
     /**
      * 在索引中定义新的分词器

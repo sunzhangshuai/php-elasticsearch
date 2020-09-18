@@ -12,7 +12,7 @@
 namespace App\RestApi\Interfaces;
 
 
-interface RequestBodySearch
+interface RequestBodySearchInterface
 {
     /**
      * 普通查询
@@ -33,18 +33,18 @@ interface RequestBodySearch
      * 通过source查询
      *
      * @param $index
-     * @param $course
+     * @param $source
      *
      * @return array
      */
-    public function source($index, $course);
+    public function source($index, $source);
 
     /**
      * 脚本查询
      *
      * @return array
      */
-    public function scriptField();
+    public function scriptField($index);
 
     /**
      * 匹配查询

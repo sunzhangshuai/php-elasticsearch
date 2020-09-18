@@ -14,6 +14,13 @@ namespace App\RestApi\Interfaces;
 
 interface MappingInterface
 {
+    /**
+     * 查询mapping
+     *
+     * @param $index
+     *
+     * @return array
+     */
     public function search($index);
 
     /**

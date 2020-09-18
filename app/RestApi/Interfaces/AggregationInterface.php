@@ -12,7 +12,7 @@
 namespace App\RestApi\Interfaces;
 
 
-interface Aggregation
+interface AggregationInterface
 {
     /**
      * 按照目的地进行分桶统计

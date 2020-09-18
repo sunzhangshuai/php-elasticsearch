@@ -14,6 +14,7 @@ namespace App\RestApi\Http;
 
 use App\RestApi\HttpElasticsearch;
 use App\RestApi\Interfaces\IndexInterface;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Index : 索引类
@@ -23,38 +24,36 @@ use App\RestApi\Interfaces\IndexInterface;
  */
 class Index extends HttpElasticsearch implements IndexInterface
 {
+
     /**
      * @inheritDoc
      */
     public function create($index, $param)
     {
         $uri = $this->host . '/' . $index;
-        $param = [
-            'form_param' => $param
-        ];
         return \GuzzleHttp\json_decode($this->client->put($uri, $param)->getBody()->getContents(), true);
     }
 
     /**
      * @inheritDoc
      */
-    public function indices($title = false, $columns = [], $index_matching = '')
+    public function indices(bool $title, array $columns, string $index_matching)
     {
         $uri = $this->host . '/_cat/indices';
         if ($index_matching) {
             $uri .= '/' . $index_matching;
         }
-        $query = [];
+        $param = [
+            'query' => []
+        ];
         if ($title) {
-            $query['v'] = '';
+            $param['query']['v'] = '';
         }
         if ($columns) {
-            $query['h'] = implode(',', $columns);
+            $param['query']['h'] = implode(',', $columns);
         }
-        $param = [
-            'query' => $query
-        ];
         return $this->client->get($uri, $param)->getBody()->getContents();
+
     }
 
     /**
@@ -62,9 +61,12 @@ class Index extends HttpElasticsearch implements IndexInterface
      */
     public function greenIndices()
     {
-        $uri = $this->host . '/_cat/indices';
+        $uri   = $this->host . '/_cat/indices';
         $param = [
-            'healthy' => 'green'
+            'query' => [
+                'v'      => '',
+                'health' => 'green'
+            ]
         ];
         return $this->client->get($uri, $param)->getBody()->getContents();
     }
@@ -74,9 +76,10 @@ class Index extends HttpElasticsearch implements IndexInterface
      */
     public function sortIndicesByDocuments()
     {
-        $uri = $this->host . '/_cat/indices';
+        $uri   = $this->host . '/_cat/indices';
         $param = [
             'query' => [
+                'v' => '',
                 's' => 'docs.count:desc'
             ]
         ];
@@ -88,7 +91,7 @@ class Index extends HttpElasticsearch implements IndexInterface
      */
     public function memoryForIndices()
     {
-        $uri = $this->host . '/_cat/indices';
+        $uri   = $this->host . '/_cat/indices';
         $param = [
             'query' => [
                 'v' => '',
@@ -113,7 +116,7 @@ class Index extends HttpElasticsearch implements IndexInterface
      */
     public function documentCount($index)
     {
-        $uri = $this->host . '/' . $index . '/_count' ;
+        $uri = $this->host . '/' . $index . '/_count';
         return \GuzzleHttp\json_decode($this->client->get($uri)->getBody()->getContents(), true);
     }
 
@@ -122,7 +125,7 @@ class Index extends HttpElasticsearch implements IndexInterface
      */
     public function catDocumentFormat($index)
     {
-        $uri = $this->host . '/' . $index . '/_search' ;
+        $uri = $this->host . '/' . $index . '/_search';
         return \GuzzleHttp\json_decode($this->client->get($uri)->getBody()->getContents(), true);
     }
 
